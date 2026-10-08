@@ -1,77 +1,78 @@
-# DestillationApp Backend
+# 🌿 DestillApp — Backend
 
-This is the backend API for DestillationApp, built with Node.js, Express, GraphQL (Apollo Server), and MongoDB.  
-It provides a robust API for managing distillation processes, plants, results, user accounts, and settings.
+The backend API for **DestillApp**, a full-stack application for managing plant distillation processes and results.
 
----
+Built with **Node.js, Express, GraphQL (Apollo Server), and MongoDB**, it provides API operations for plants, distillations, results, user accounts, and settings.
 
-## 🚀 Deployment / Live API
-
-The backend API is deployed and accessible at:
-
-🌐 **Live API:** [https://destillapp.onrender.com/graphql](https://destillapp.onrender.com/graphql)
+[← Back to the main README](../README.md)
 
 ---
 
-## 🚀 Features
+## 🚀 Live API
 
-- **GraphQL API**: Modern GraphQL API with Apollo Server
-- **MongoDB Integration**: Database operations with Mongoose ODM
-- **JWT Authentication**: Secure user authentication and authorization
-- **Input Sanitization**: Comprehensive data sanitization using validator package
-- **Error Handling**: Centralized error handling with GraphQL errors
-- **Data Validation**: Input validation and sanitization for security
-- **Modular Architecture**: Well-organized resolver and schema structure
+**[GraphQL API — Render](https://destillapp.onrender.com/graphql)**
+
+The backend is deployed on **Render**.
 
 ---
 
-## 🛠️ Project Setup
+## 📌 API Overview
 
-```sh
-npm install
-```
+The GraphQL API supports operations involving:
 
-### Running the Server
+- **Plants** — creating, retrieving, updating, and deleting plant records
+- **Distillations** — managing distillation processes
+- **Results** — storing and retrieving distillation results
+- **Users** — authentication and profile management
 
-```sh
-npm start
+### Example GraphQL Query
+
+```graphql
+query GetPlants {
+  getPlants {
+    _id
+    plantName
+    plantPart
+    availableWeight
+  }
+}
 ```
 
 ---
 
-## 📚 Documentation
+## ✨ Features
 
-The API is documented using **JSDoc** with auto-generated documentation.
-You can also view the docs online: [DestillationApp Backend Docs](https://destillapp.github.io/destill-app-fullstack/backend/)
+### Authentication & Data Protection
 
-### Generate Documentation Locally
+- JWT-based user authentication
+- User-specific data access
+- Input validation and sanitization
+- Centralized GraphQL error handling
 
-```sh
-npm run docs:js
-```
+### Data Management
 
-### View Documentation Locally
+- GraphQL queries and mutations for application data
+- MongoDB persistence through Mongoose models
+- Resolvers and schemas organized into separate modules
 
-**Option 1: Direct file access**
-```sh
-# Open in browser
-open docs/jsdoc/index.html
-```
+---
 
-**Option 2: Serve documentation locally**
-```sh
-# Install serve globally (one time only)
-npm install -g serve
+## 🛠️ Tech Stack
 
-# Serve documentation on localhost
-npx serve docs/jsdoc
-```
+- **Node.js** — JavaScript runtime
+- **Express** — HTTP server
+- **GraphQL & Apollo Server** — API layer
+- **MongoDB** — database
+- **Mongoose** — data modeling
+- **JWT** — authentication
+- **validator** — input validation and sanitization
+- **JSDoc** — API documentation
 
-Then visit `http://localhost:3000` to browse the interactive documentation.
+---
 
-## 📦 Directory Structure
+## 🏗️ Directory Structure
 
-```
+```text
 backend/
 ├── src/
 │   ├── app.js                    # Express server setup
@@ -91,13 +92,28 @@ backend/
 
 ---
 
-## ⚙️ Environment Variables
+## ⚙️ Project Setup
 
-Create a `.env` file in the root:
+### Install Dependencies
+
+```sh
+npm install
+```
+
+### Run the Server
+
+```sh
+npm start
+```
+
+---
+
+## 🔧 Environment Variables
+
+Create a `.env` file in the backend directory:
 
 ```env
-# Database
-# For MongoDB Atlas (cloud):
+# Database (MongoDB Atlas)
 MONGODB_URI=mongodb+srv://your_username:your_password@cluster.mongodb.net/your_database
 
 # JWT
@@ -110,37 +126,49 @@ PORT=3000
 ALLOWED_ORIGINS=http://localhost:5173,http://localhost:4173
 ```
 
+Replace the placeholder values with your own configuration. Do not commit real credentials or secrets to the repository.
+
+---
+
+## 📚 Documentation
+
+The backend uses **JSDoc** to generate documentation from the source code.
+
+**[View Backend Documentation](https://destillapp.github.io/destill-app-fullstack/backend/)**
+
+### Generate Documentation Locally
+
+```sh
+npm run docs:js
+```
+
+### View Documentation Locally
+
+**Option 1: Open the generated HTML file**
+
+Open `docs/jsdoc/index.html` in your browser.
+
+**Option 2: Serve the documentation locally**
+
+Install `serve` globally (one time only):
+
+```sh
+npm install -g serve
+```
+
+Serve the generated documentation:
+
+```sh
+npx serve docs/jsdoc
+```
+
+Then open the local URL displayed in the terminal (typically `http://localhost:3000`).
+
 ---
 
 ## 🔒 Security Features
 
-- **Input Sanitization**: All user inputs sanitized using validator library
-- **JWT Authentication**: Secure token-based authentication
-- **Error Handling**: Secure error messages with GraphQL errors
-- **User Data Isolation**: User-specific data protection
-
----
-
-## 📝 API Overview
-
-The API provides GraphQL endpoints for:
-
-- **Plants**: Create, read, update, delete plant entries
-- **Distillations**: Manage distillation processes  
-- **Results**: Store and retrieve distillation results
-- **Users**: Authentication and profile management
-- **Settings**: User preferences and configurations
-
-Example query:
-```graphql
-query GetPlants {
-  getPlants {
-    _id
-    plantName
-    plantPart
-    availableWeight
-  }
-}
-```
-
----
+- **Input sanitization** — uses the `validator` library to sanitize user input
+- **JWT authentication** — token-based access to protected operations
+- **GraphQL error handling** — centralized handling of application errors
+- **User data isolation** — user-specific data access restrictions
